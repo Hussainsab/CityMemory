@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Product from "./pages/Product";
 import Login from "./pages/Login";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/Homepage";
 import Pricing from "./pages/Pricing.jsx";
 import AppLayout from "./pages/AppLayout";
 import PageNotFound from "../src/pages/PageNotFound.jsx";
