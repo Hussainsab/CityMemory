@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://react-quiz-app-backend.onrender.com";
 const CityContext = createContext();
 
 const CityProvider = ({ children }) => {
