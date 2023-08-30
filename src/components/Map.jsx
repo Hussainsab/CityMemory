@@ -8,15 +8,17 @@ import {
   useMap,
   useMapEvents,
 } from "react-leaflet";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useCities } from "../context/CitiesContext";
 import { useGeolocation } from "../hooks/useGeolocation";
 import Button from "./Button";
 import { useUrlPosition } from "../hooks/useUrlPosition";
 
 const Map = () => {
+  console.log("map");
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const { cities } = useCities();
+
   const {
     isLoading: isLoadingPosition,
     position: geolocationPosition,
@@ -30,8 +32,9 @@ const Map = () => {
   }, [mapLat, mapLng]);
 
   useEffect(() => {
-    if (geolocationPosition)
+    if (geolocationPosition) {
       setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
+    }
   }, [geolocationPosition]);
   return (
     <div className={styles.mapContainer}>
@@ -57,7 +60,10 @@ const Map = () => {
             </Popup>
           </Marker>
         ))}
-        <ChnageCenter position={mapPosition} />
+        <ChnageCenter
+          position={mapPosition}
+          geolocationPosition={geolocationPosition}
+        />
         <DetectChange />
       </MapContainer>
     </div>
@@ -74,7 +80,7 @@ function DetectChange() {
   const navigate = useNavigate();
   useMapEvents({
     click: (e) => {
-      navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+      navigate(`/app/form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
     },
   });
 }
